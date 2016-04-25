@@ -1,0 +1,319 @@
+body {
+  font-family: var(--main-font);
+}
+
+/** template for tabs
+<div class="tabbed-view">
+  <ul class="tabs">
+    <li onclick="this.getElementsByTagName('input')[0].click();">
+      <input name="dummy-tabx" type="radio" />
+      <label for="tab1"><i class="fa fa-fw fa-plane"></i>Tab 1</label>
+    </li>
+    <li onclick="this.getElementsByTagName('input')[0].click();">
+      <input name="dummy-tabx" type="radio" />
+      <label for="tab2"><i class="fa fa-fw fa-subway"></i>Tab 2</label>
+    </li>
+  </ul>
+  <ul class="tabs-contents">
+    <li>
+      <input id="tab1" name="tabs" type="radio" />
+      <p class="tab-content">Toto titi</p>
+    </li>
+    <li>
+      <input id="tab2" name="tabs" type="radio" />
+      <p class="tab-content">Tata tutu</p>
+    </li>
+  </ul>
+</div>
+**/
+
+.tabbed-view {
+  position: relative;
+}
+
+ul.tabs {
+  background-color: var(--widget-color);
+}
+
+ul.tabs, ul.tabs-contents {
+  position: relative;
+  list-style-type: none;
+  margin: 0px;
+}
+
+ul.tabs, ul.tabs-contents {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul.tabs > li {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul.tabs li > input[type="radio"], ul.tabs-contents > li > input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+}
+
+ul.tabs label {
+  transition-property: background, border;
+  transition: 0.2s ease-out;
+  display: inline-block;
+  opacity: 0.5;
+  position: relative;
+  padding: var(--widget-padding);
+}
+
+ul.tabs input[type="radio"]:checked ~ label, ul.tabs label:hover {
+  border: 1px solid var(--accent-color);
+  opacity: 1;
+  border-width: 0 0 2px 0;
+}
+
+ul.tabs label:hover {
+  background-color: var(--widget-hover-color);
+}
+
+ul.tabs input[type="radio"]:checked ~ label {
+  background-color: var(--widget-pressed-color);
+}
+
+ul.tabs-contents > li {
+  float: left;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul.tabs-contents > li .tab-content {
+  display: none;
+}
+
+ul.tabs-contents > li > input[type="radio"]:checked ~ .tab-content {
+  display: block;
+}
+
+.checkboard {
+  background-image: linear-gradient(45deg, var(--checkboard-color) 25%, transparent 25%, transparent 75%, var(--checkboard-color) 75%, var(--checkboard-color)),
+                    linear-gradient(45deg, var(--checkboard-color) 25%, transparent 25%, transparent 75%, var(--checkboard-color) 75%, var(--checkboard-color));
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.tool-box {
+  display: flex;
+  border: solid 1px var(--widget-border-color);
+  background: linear-gradient(to bottom, var(--main-color-lighter) 0%, var(--main-color) var(--widget-gradient-stop));
+  margin: 0px;
+}
+
+.tool-box fieldset {
+  border: medium none;
+  padding: 0px;
+}
+
+.tool-box.centered {
+  justify-content: center;
+}
+
+/* template for a button
+<a id="restart" class="btn">
+  <i class="fa fa-pull-left fa-fw fa-undo"></i>Undo
+</a>
+*/
+
+.btn {
+  display: inline-block;
+  color: var(--main-text-color);
+  transition-property: background, box-shadow;
+  transition: 0.2s ease-out;
+  padding: var(--widget-padding);
+  border-radius: var(--default-rounding);
+  background: var(--widget-color);
+  margin: var(--default-margin);
+  text-decoration: none;
+  border: 1px var(--widget-border-color) solid;
+  cursor: pointer;
+  /* Non standard, but non vital either */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.btn-group {
+  display: inline-block;
+}
+
+fieldset .btn, .btn-group .btn {
+  margin: 0px;
+  border-radius: 0px;
+  border: 1px var(--widget-border-color) solid;
+}
+
+fieldset .btn:first-child, .btn-group .btn:first-child {
+  margin: var(--default-margin) 0px 0px var(--default-margin);
+  border-radius: var(--default-rounding) 0px 0px var(--default-rounding);
+}
+
+fieldset .btn:last-child, .btn-group .btn:last-child {
+  margin: 0px var(--default-rounding) var(--default-rounding) 0px;
+  border-radius: 0px var(--default-rounding) var(--default-rounding) 0px;
+}
+
+.btn [type="radio"], .btn [type="checkbox"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.btn:hover {
+  background: var(--widget-hover-color);
+}
+
+.btn:active {
+  background: var(--widget-pressed-color);
+  box-shadow: var(--widget-pressed-shadow);
+}
+
+.btn [type="radio"]:checked + span, .btn [type="checkbox"]:checked + span {
+  background-color: var(--widget-pressed-color);
+  box-shadow: var(--widget-pressed-shadow);
+  display: inline-block;
+  margin: calc(-1 * var(--widget-padding));
+  padding: var(--widget-padding);
+}
+
+/* template for a popover
+<label class="popover btn">
+  <input type="checkbox" /><span><i class="fa fa-pull-right fa-caret-down"></i>Taille</span>
+  <div class="popover-panel" >
+    <p>
+      This is a popover<br/>
+      Hey ho !<br/>
+      I pop !
+    <p>
+  </div>
+</label>
+*/
+
+.popover {
+  display: inline-block;
+  position: relative;
+}
+
+.popover .popover-panel {
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  width: 100%;
+  transition-property: opacity, padding, visibility;
+  transition: 0.15s ease-out;
+  visibility: hidden;
+  padding: 16px 0px;
+  --offset: -8px;
+}
+
+.popover > input[type="checkbox"]:checked ~ .popover-panel {
+  visibility: visible;
+  opacity: 1;
+  margin: 0px;
+  padding: 0px;
+  top: calc(-2 * var(--offset));
+}
+
+.popover-panel:before {
+  content: "";
+	border-bottom: 11px solid var(--text-area-bg-color);
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+  position: relative;
+  top: var(--offset);
+  left: calc(50% + var(--offset));
+}
+
+.popover ul {
+  display: table;
+  list-style: none;
+  margin: auto;
+  padding: var(--widget-padding) 0px;
+  background-color: var(--text-area-bg-color);
+  box-shadow: 0px 0px 16px -4px #444;
+  border-radius: var(--default-rounding);
+  border: 1px var(--widget-border-color) solid;
+}
+
+.popover li {
+  display: table-row;
+  position: relative;
+  width: 100%;
+}
+
+.popover li > .menu-entry {
+  display: table-cell;
+  white-space: nowrap;
+  text-decoration: none;
+  color: black;
+  padding: var(--widget-padding) calc(var(--widget-padding) + 32px) var(--widget-padding) var(--widget-padding);
+}
+
+.popover li > .menu-entry:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+table.gauge {
+  display: inline-table;
+  border-spacing: 0;
+  color: var(--main-text-color);
+  border: 1px solid var(--widget-border-color);
+  border-collapse: separate;
+  border-radius: 0 var(--default-rounding) var(--default-rounding) 0;
+  margin: var(--default-margin);
+}
+
+table.gauge caption {
+  background-color: var(--widget-color);
+  border: 1px solid var(--widget-border-color);
+  border-width: 1px 0 1px 1px;
+  border-radius: var(--default-rounding) 0 0 var(--default-rounding);
+  caption-side: left;
+  text-align: left;
+  padding: calc(0.5 * var(--widget-padding));
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+table.gauge td:last-child, table.gauge th {
+  border: none;
+  margin: 0px;
+  padding: calc(0.5 * var(--widget-padding));
+}
+
+table.gauge td:last-child {
+  border-radius: 0 var(--default-rounding) var(--default-rounding) 0;
+}
+
+table.gauge.numerical td {
+  background-color: var(--text-area-bg-color);
+  color: var(--text-area-text-color);
+  min-width: 3em;
+  text-align: right;
+}
+
+table.gauge th {
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+}
