@@ -1,26 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CoordBox from './jsx/coordbox';
-import HorizontalSelectBox from './jsx/hselectbox';
+import {Coord, CoordBox} from './jsx/coordbox';
+import {MultiValueButton, ButtonValue} from './jsx/multivaluebutton';
 import MenuEntry from './jsx/menuentry';
 import Popover from './jsx/popover';
 import PushButton from './jsx/pushbutton';
 import Tab from './jsx/tab';
 import Tabs from './jsx/tabs';
 
-const types = [
-  {name: "Land", symbol: 'car', def: true},
-  {name: "Rock", symbol: 'subway'},
-  {name: "Water", symbol: 'ship'},
-  {name: "Void", symbol: 'plane'},
-  {name: "Sand", symbol: 'sun-o'}
-];
-
 window.onload = e => {
   ReactDOM.render(
     <div>
-      <CoordBox caption="Coordinates" data={{x: 0, y: 0}} />
-      <HorizontalSelectBox data={ types } />
+      <CoordBox caption="Coordinates">
+        <Coord label="x" value="13" />
+        <Coord label="y" value="42" />
+      </CoordBox>
+      <MultiValueButton>
+        <ButtonValue label="Land" icon="fa-car" def />
+        <ButtonValue label="Rock" icon="fa-subway" />
+        <ButtonValue label="Water" icon="fa-ship" />
+        <ButtonValue label="Air" icon="fa-rocket" />
+      </MultiValueButton>
       <Popover label="popover !">
         <MenuEntry icon= "fa-subway" label="Subway" href="#1"/>
         <MenuEntry icon= "fa-plane" label="Plane" href="#1"/>

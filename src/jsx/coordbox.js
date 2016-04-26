@@ -1,14 +1,18 @@
 import React from 'react';
 
-export default class CoordBox extends React.Component {
+export class Coord extends React.Component {
+  render () {
+    return <tr><th>{ this.props.label }</th><td>{ this.props.value }</td></tr>;
+  }
+}
+
+export class CoordBox extends React.Component {
   render () {
     return (
       <table className="tool numerical gauge">
         <caption>{ this.props.caption }</caption>
         <tbody>
-          <tr>
-            { Object.keys(this.props.data).map(key => [<th>{ key }</th>, <td>{ this.props.data[key] }</td>]) }
-          </tr>
+          { this.props.children }
         </tbody>
       </table>
     );

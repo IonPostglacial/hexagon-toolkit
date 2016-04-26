@@ -296,6 +296,10 @@ table.gauge caption {
   white-space: nowrap;
 }
 
+table.gauge tr {
+  display: inline-block;
+}
+
 table.gauge td:last-child, table.gauge th {
   border: none;
   margin: 0px;
