@@ -25,16 +25,16 @@ export class MultiValueButton extends React.Component {
   }
   render () {
     return (
-      <form className="centered tool-box">
-        <fieldset onChange={ this.handleButtonClick.bind(this) }>
+      <div className="centered tool-box">
+        <div className="btn-group" onChange={ this.handleButtonClick.bind(this) }>
           { React.Children.map(this.props.children, (child, i) =>
             <label className="btn">
               <input name="tile-type" type="radio" value={ i } defaultChecked={ child.props.def ? 'checked' : '' } />
               { child }
             </label>
           )}
-        </fieldset>
-      </form>
+        </div>
+      </div>
     );
   }
 }
