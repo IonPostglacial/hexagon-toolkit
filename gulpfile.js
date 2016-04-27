@@ -6,21 +6,32 @@ const sourcemaps = require('gulp-sourcemaps');
 const http = require('http');
 const st = require('st')
 const livereload = require('gulp-livereload');
+const es = require('event-stream');
+const path = require('path');
 
-gulp.task('js', function () {
-  const bundler = browserify({
-    debug: true,
-    entries: 'src/main.js',
-  });
-  bundler.transform('babelify', { presets: ['es2015', 'react'] })
-
-  bundler.bundle()
-    .on('error', function (err) { console.error(err); })
-    .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist'));
+gulp.task('js', function() {
+    // we define our input files, which we want to have
+    // bundled:
+    const bundleEntries = [
+      'src/main.js',
+      'src/htk.js'
+    ];
+    // map them to our stream function
+    const tasks = bundleEntries.map(entry => {
+      return browserify({
+        debug: true,
+        entries: [entry],
+      })
+      .transform('babelify', { presets: ['es2015', 'react'] })
+      .bundle()
+      .on('error', function (err) { console.error(err); })
+      .pipe(source(path.basename(entry)))
+      //.pipe(sourcemaps.init({ loadMaps: true }))
+      //.pipe(sourcemaps.write())
+      .pipe(gulp.dest('dist'));
+    });
+    // create a merged stream
+    return es.merge.apply(null, tasks);
 });
 
 gulp.task('default', ['js'], function (done) {
