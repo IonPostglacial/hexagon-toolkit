@@ -8,7 +8,7 @@ import PushButton from './jsx/pushbutton';
 import Tab from './jsx/tab';
 import Tabs from './jsx/tabs';
 
-export default {
+export {
   CoordBox,
   Coord,
   MultiValueButton,
