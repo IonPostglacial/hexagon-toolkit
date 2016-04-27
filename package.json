@@ -3,7 +3,7 @@
   "repository": "https://github.com/IonPostglacial/htk.git",
   "version": "0.0.1",
   "description": "An HTML Components Tool Kit",
-  "main": "main.js",
+  "main": "dist/htk.js",
   "dependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
