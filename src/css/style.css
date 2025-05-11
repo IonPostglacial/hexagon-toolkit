@@ -10,31 +10,6 @@ h1, h2, h3, h4, h5 {
   text-align: center;
 }
 
-/** template for tabs
-<div class="tabbed-view">
-  <ul class="tabs">
-    <li onclick="this.getElementsByTagName('input')[0].click();">
-      <input name="dummy-tabx" type="radio" />
-      <label for="tab1"><i class="fa fa-fw fa-plane"></i>Tab 1</label>
-    </li>
-    <li onclick="this.getElementsByTagName('input')[0].click();">
-      <input name="dummy-tabx" type="radio" />
-      <label for="tab2"><i class="fa fa-fw fa-subway"></i>Tab 2</label>
-    </li>
-  </ul>
-  <ul class="tabs-contents">
-    <li>
-      <input id="tab1" name="tabs" type="radio" />
-      <p class="tab-content">Toto titi</p>
-    </li>
-    <li>
-      <input id="tab2" name="tabs" type="radio" />
-      <p class="tab-content">Tata tutu</p>
-    </li>
-  </ul>
-</div>
-**/
-
 .tabbed-view {
   position: relative;
 }
@@ -91,7 +66,6 @@ ul.tabs input[type="radio"]:checked ~ label {
 
 ul.tabs-contents > li {
   float: left;
-  display: inline-block;
   position: relative;
   width: 100%;
   margin: 0px;
@@ -116,7 +90,7 @@ ul.tabs-contents > li > input[type="radio"]:checked ~ .tab-content {
 .tool-box {
   display: flex;
   border: solid 1px var(--widget-border-color);
-  border-radius: var(--default-rounding)
+  border-radius: var(--default-rounding);
   background: linear-gradient(to bottom, var(--main-color-lighter) 0%, var(--main-color) var(--widget-gradient-stop));
   margin: 0px;
 }
@@ -129,12 +103,6 @@ ul.tabs-contents > li > input[type="radio"]:checked ~ .tab-content {
 .tool-box.centered {
   justify-content: center;
 }
-
-/* template for a button
-<a id="restart" class="btn">
-  <i class="fa fa-pull-left fa-fw fa-undo"></i>Undo
-</a>
-*/
 
 .btn {
   display: inline-block;
@@ -206,19 +174,6 @@ fieldset .btn:last-child, .btn-group .btn:last-child {
   margin: calc(-1 * var(--widget-padding));
   padding: var(--widget-padding);
 }
-
-/* template for a popover
-<label class="popover btn">
-  <input type="checkbox" /><span><i class="fa fa-pull-right fa-caret-down"></i>Taille</span>
-  <div class="popover-panel" >
-    <p>
-      This is a popover<br/>
-      Hey ho !<br/>
-      I pop !
-    <p>
-  </div>
-</label>
-*/
 
 .popover {
   display: inline-block;
